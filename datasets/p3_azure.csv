@@ -1,0 +1,151 @@
+filename,person,audio,noise,snr,provider,text,status,transcription_time
+p3_1_cafe_0dB.wav,p3,1,cafe,0dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de pared.,success,3.34
+p3_1_cafe_5dB.wav,p3,1,cafe,5dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de Paru.,success,3.31
+p3_1_cafe_10dB.wav,p3,1,cafe,10dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de pared.,success,3.36
+p3_1_clean.wav,p3,1,clean,,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de pared.,success,3.33
+p3_1_traffic_0dB.wav,p3,1,traffic,0dB,azure,"Genera una cotización para el cliente poco fácil, con 5 monitores LED y 3 soportes de pared.",success,3.40
+p3_1_traffic_5dB.wav,p3,1,traffic,5dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de Parid.,success,3.33
+p3_1_traffic_10dB.wav,p3,1,traffic,10dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de Parit.,success,3.30
+p3_1_warehouse_0dB.wav,p3,1,warehouse,0dB,azure,"Genera una cotización para el cliente poco fácil, con 5 monitores, 3 y 3 soportes de paréntesis.",success,3.41
+p3_1_warehouse_5dB.wav,p3,1,warehouse,5dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de París.,success,3.38
+p3_1_warehouse_10dB.wav,p3,1,warehouse,10dB,azure,Genera una cotización para el cliente compu fácil con 5 monitores LED y 3 soportes de pared.,success,3.31
+p3_2_cafe_0dB.wav,p3,2,cafe,0dB,azure,"Preparará un presupuesto urgente por mes, teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.",success,4.29
+p3_2_cafe_5dB.wav,p3,2,cafe,5dB,azure,Prepara un presupuesto urgente.,success,1.83
+p3_2_cafe_10dB.wav,p3,2,cafe,10dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.26
+p3_2_clean.wav,p3,2,clean,,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a Tecno SIS.,success,4.36
+p3_2_traffic_0dB.wav,p3,2,traffic,0dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.30
+p3_2_traffic_5dB.wav,p3,2,traffic,5dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.33
+p3_2_traffic_10dB.wav,p3,2,traffic,10dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.35
+p3_2_warehouse_0dB.wav,p3,2,warehouse,0dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar asternos.,success,4.48
+p3_2_warehouse_5dB.wav,p3,2,warehouse,5dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.48
+p3_2_warehouse_10dB.wav,p3,2,warehouse,10dB,azure,Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosis.,success,4.28
+p3_3_cafe_0dB.wav,p3,3,cafe,0dB,azure,Crea una oferta comercial para Carla Saldana con un escritorio Ejecutivo modelo erkin.,success,3.20
+p3_3_cafe_5dB.wav,p3,3,cafe,5dB,azure,Crea una oferta comercial para Carla Santana con un escritorio Ejecutivo modelo XG premium.,success,3.47
+p3_3_cafe_10dB.wav,p3,3,cafe,10dB,azure,Crea una oferta comercial para Carla Santana.,success,1.98
+p3_3_clean.wav,p3,3,clean,,azure,Crea una oferta comercial para Carla Santana.,success,1.93
+p3_3_traffic_0dB.wav,p3,3,traffic,0dB,azure,Crea una oferta comercial para Carla Santana con un escritorio Ejecutivo modelo XG premium.,success,3.55
+p3_3_traffic_5dB.wav,p3,3,traffic,5dB,azure,Crea una oferta comercial para Carla Santana.,success,1.98
+p3_3_traffic_10dB.wav,p3,3,traffic,10dB,azure,Crea una oferta comercial para Carla Santana.,success,1.88
+p3_3_warehouse_0dB.wav,p3,3,warehouse,0dB,azure,Crea una oferta comercial para Carla sandalias con un escritorio Ejecutivo modelo epis G freeling.,success,3.47
+p3_3_warehouse_5dB.wav,p3,3,warehouse,5dB,azure,Crea una oferta comercial para Carla Santana.,success,1.83
+p3_3_warehouse_10dB.wav,p3,3,warehouse,10dB,azure,Crea una oferta comercial para Carla Santana.,success,1.93
+p3_4_cafe_0dB.wav,p3,4,cafe,0dB,azure,Tener una reforma para Andina.,success,1.97
+p3_4_cafe_5dB.wav,p3,4,cafe,5dB,azure,Genera una proforma para andinaco. Incluye dos laptops CORE I 7 y 3 impresoras multifunción.,success,5.02
+p3_4_cafe_10dB.wav,p3,4,cafe,10dB,azure,"Genera una proforma para Andina, COV.",success,1.93
+p3_4_clean.wav,p3,4,clean,,azure,Genera una proforma para Andina Corp.,success,1.83
+p3_4_traffic_0dB.wav,p3,4,traffic,0dB,azure,Genera una proforma para Andina copp.,success,1.88
+p3_4_traffic_5dB.wav,p3,4,traffic,5dB,azure,Genera una proforma para Andina COP.,success,1.83
+p3_4_traffic_10dB.wav,p3,4,traffic,10dB,azure,Genera una proforma para Andina Cort.,success,1.83
+p3_4_warehouse_0dB.wav,p3,4,warehouse,0dB,azure,Genera una proforma para Andina Fox.,success,1.88
+p3_4_warehouse_5dB.wav,p3,4,warehouse,5dB,azure,Genera una proforma para Andina COR.,success,1.83
+p3_4_warehouse_10dB.wav,p3,4,warehouse,10dB,azure,Genera una proforma para Andina Corp.,success,1.77
+p3_5_cafe_0dB.wav,p3,5,cafe,0dB,azure,La última factura del cliente de la historia social y reenvíala a su correo.,success,2.84
+p3_5_cafe_5dB.wav,p3,5,cafe,5dB,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.68
+p3_5_cafe_10dB.wav,p3,5,cafe,10dB,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.77
+p3_5_clean.wav,p3,5,clean,,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.74
+p3_5_traffic_0dB.wav,p3,5,traffic,0dB,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.71
+p3_5_traffic_5dB.wav,p3,5,traffic,5dB,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.70
+p3_5_traffic_10dB.wav,p3,5,traffic,10dB,azure,Busca la última factura del cliente Velasco y asociados y reenvíala a su correo.,success,2.73
+p3_5_warehouse_0dB.wav,p3,5,warehouse,0dB,azure,¿La última factura?,success,1.58
+p3_5_warehouse_5dB.wav,p3,5,warehouse,5dB,azure,Busca la última factura del cliente Velasco y asociados.,success,2.17
+p3_5_warehouse_10dB.wav,p3,5,warehouse,10dB,azure,Busca la última factura del cliente Velasco y asociados.,success,2.12
+p3_6_cafe_0dB.wav,p3,6,cafe,0dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.30
+p3_6_cafe_5dB.wav,p3,6,cafe,5dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.35
+p3_6_cafe_10dB.wav,p3,6,cafe,10dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.28
+p3_6_clean.wav,p3,6,clean,,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.39
+p3_6_traffic_0dB.wav,p3,6,traffic,0dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.33
+p3_6_traffic_5dB.wav,p3,6,traffic,5dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.33
+p3_6_traffic_10dB.wav,p3,6,traffic,10dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.37
+p3_6_warehouse_0dB.wav,p3,6,warehouse,0dB,azure,¿Que mira la captura del pedido de compra 852025?,success,2.37
+p3_6_warehouse_5dB.wav,p3,6,warehouse,5dB,azure,"¿Que mira la factura del pedido de compra, 852025?",success,2.28
+p3_6_warehouse_10dB.wav,p3,6,warehouse,10dB,azure,"¿Genera la factura del pedido de compra, 852025?",success,2.28
+p3_7_cafe_0dB.wav,p3,7,cafe,0dB,azure,Verifica si la factura F a 409516 CIR del Pacífico ya está pagada.,success,3.97
+p3_7_cafe_5dB.wav,p3,7,cafe,5dB,azure,Verifica si la factura F a 409516 de Hierro del Pacífico ya está pagada.,success,4.11
+p3_7_cafe_10dB.wav,p3,7,cafe,10dB,azure,Verifica si la factura F a 409516 de Hierro del Pacífico ya está pagada.,success,4.12
+p3_7_clean.wav,p3,7,clean,,azure,Verifica si la factura F a 409516 de hierros del Pacífico ya está pagada.,success,4.11
+p3_7_traffic_0dB.wav,p3,7,traffic,0dB,azure,Verifica si la factura F a 40 9516 de hierros del Pacífico ya está pagada.,success,4.11
+p3_7_traffic_5dB.wav,p3,7,traffic,5dB,azure,Verifica si la factura F a 409516 de hierros del Pacífico ya está pagada.,success,4.23
+p3_7_traffic_10dB.wav,p3,7,traffic,10dB,azure,Verifica si la factura F a 409516 de hierros del Pacífico ya está pagada.,success,4.24
+p3_7_warehouse_0dB.wav,p3,7,warehouse,0dB,azure,Verifica si la captura F a 409516 de 10 ron del Pacífico ya está apagada.,success,4.11
+p3_7_warehouse_5dB.wav,p3,7,warehouse,5dB,azure,Verifica si la captura F a 409516 de hierros del Pacífico ya está pagada.,success,4.16
+p3_7_warehouse_10dB.wav,p3,7,warehouse,10dB,azure,Verifica si la factura F a 409516 de hierros del Pacífico ya está pagada.,success,4.17
+p3_8_cafe_0dB.wav,p3,8,cafe,0dB,azure,Ergonómicas de oficina tenemos en la bodega de Guayaquil.,success,2.43
+p3_8_cafe_5dB.wav,p3,8,cafe,5dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.31
+p3_8_cafe_10dB.wav,p3,8,cafe,10dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.31
+p3_8_clean.wav,p3,8,clean,,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.27
+p3_8_traffic_0dB.wav,p3,8,traffic,0dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.26
+p3_8_traffic_5dB.wav,p3,8,traffic,5dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.23
+p3_8_traffic_10dB.wav,p3,8,traffic,10dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.24
+p3_8_warehouse_0dB.wav,p3,8,warehouse,0dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.30
+p3_8_warehouse_5dB.wav,p3,8,warehouse,5dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.27
+p3_8_warehouse_10dB.wav,p3,8,warehouse,10dB,azure,¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?,success,2.34
+p3_9_cafe_0dB.wav,p3,9,cafe,0dB,azure,"Registra el ingreso de 50 resumas de papel, cuatro el proveedor papel mundo.",success,3.54
+p3_9_cafe_5dB.wav,p3,9,cafe,5dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.55
+p3_9_cafe_10dB.wav,p3,9,cafe,10dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.56
+p3_9_clean.wav,p3,9,clean,,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.55
+p3_9_traffic_0dB.wav,p3,9,traffic,0dB,azure,Registro el ingreso.,success,1.58
+p3_9_traffic_5dB.wav,p3,9,traffic,5dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.38
+p3_9_traffic_10dB.wav,p3,9,traffic,10dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.56
+p3_9_warehouse_0dB.wav,p3,9,warehouse,0dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor.,success,2.67
+p3_9_warehouse_5dB.wav,p3,9,warehouse,5dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor.,success,2.62
+p3_9_warehouse_10dB.wav,p3,9,warehouse,10dB,azure,Registra el ingreso de 50 resmas de papel a cuatro del proveedor papel mundo.,success,3.32
+p3_10_cafe_0dB.wav,p3,10,cafe,0dB,azure,Dame el stock actual.,success,1.73
+p3_10_cafe_5dB.wav,p3,10,cafe,5dB,azure,Dame el stock actual de discos duros de un terabyte de la marca dura disco.,success,3.02
+p3_10_cafe_10dB.wav,p3,10,cafe,10dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.17
+p3_10_clean.wav,p3,10,clean,,azure,Dame el stock actual de discos duros de un terabyte.,success,2.17
+p3_10_traffic_0dB.wav,p3,10,traffic,0dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.22
+p3_10_traffic_5dB.wav,p3,10,traffic,5dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.12
+p3_10_traffic_10dB.wav,p3,10,traffic,10dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.12
+p3_10_warehouse_0dB.wav,p3,10,warehouse,0dB,azure,Dame el stock actual.,success,1.73
+p3_10_warehouse_5dB.wav,p3,10,warehouse,5dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.12
+p3_10_warehouse_10dB.wav,p3,10,warehouse,10dB,azure,Dame el stock actual de discos duros de un terabyte.,success,2.07
+p3_11_cafe_0dB.wav,p3,11,cafe,0dB,azure,Muéstrame el historial de compras del cliente Eduardo Torroso durante los últimos 6 meses.,success,3.34
+p3_11_cafe_5dB.wav,p3,11,cafe,5dB,azure,Muéstrame el historial de compras del cliente Eduardo Torroso durante los últimos 6 meses.,success,3.35
+p3_11_cafe_10dB.wav,p3,11,cafe,10dB,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.43
+p3_11_clean.wav,p3,11,clean,,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.51
+p3_11_traffic_0dB.wav,p3,11,traffic,0dB,azure,Muéstrame el historial de compras del cliente Eduardo de Rosso durante los últimos 6 meses.,success,3.35
+p3_11_traffic_5dB.wav,p3,11,traffic,5dB,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.35
+p3_11_traffic_10dB.wav,p3,11,traffic,10dB,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.35
+p3_11_warehouse_0dB.wav,p3,11,warehouse,0dB,azure,Muéstrame el historial de compras del cliente Eduardo Cerrocho durante los últimos 6 meses.,success,3.35
+p3_11_warehouse_5dB.wav,p3,11,warehouse,5dB,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.35
+p3_11_warehouse_10dB.wav,p3,11,warehouse,10dB,azure,Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses.,success,3.35
+p3_12_cafe_0dB.wav,p3,12,cafe,0dB,azure,Crea un nuevo cliente con el nombre Julian Androni Pérez y RU cero 9.,success,3.21
+p3_12_cafe_5dB.wav,p3,12,cafe,5dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez y Rub.,success,2.62
+p3_12_cafe_10dB.wav,p3,12,cafe,10dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez y Rug.,success,2.66
+p3_12_clean.wav,p3,12,clean,,azure,Crea un nuevo cliente con el nombre Julián Antonio Pérez y Ruc 0922078366.,success,6.35
+p3_12_traffic_0dB.wav,p3,12,traffic,0dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez Gil roques 0922078366.,success,6.30
+p3_12_traffic_5dB.wav,p3,12,traffic,5dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez y Rock.,success,2.71
+p3_12_traffic_10dB.wav,p3,12,traffic,10dB,azure,Crea un nuevo cliente con el nombre Julián Antonio Pérez y Rock.,success,2.66
+p3_12_warehouse_0dB.wav,p3,12,warehouse,0dB,azure,Crea un nuevo experience con el nombre Julián Antonio Pérez sirvió.,success,2.61
+p3_12_warehouse_5dB.wav,p3,12,warehouse,5dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez y RU.,success,2.66
+p3_12_warehouse_10dB.wav,p3,12,warehouse,10dB,azure,Crea un nuevo cliente con el nombre Julian Antonio Pérez y RU.,success,2.62
+p3_13_cafe_0dB.wav,p3,13,cafe,0dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.18
+p3_13_cafe_5dB.wav,p3,13,cafe,5dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.20
+p3_13_cafe_10dB.wav,p3,13,cafe,10dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.21
+p3_13_clean.wav,p3,13,clean,,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.25
+p3_13_traffic_0dB.wav,p3,13,traffic,0dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.31
+p3_13_traffic_5dB.wav,p3,13,traffic,5dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.23
+p3_13_traffic_10dB.wav,p3,13,traffic,10dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.19
+p3_13_warehouse_0dB.wav,p3,13,warehouse,0dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.29
+p3_13_warehouse_5dB.wav,p3,13,warehouse,5dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.23
+p3_13_warehouse_10dB.wav,p3,13,warehouse,10dB,azure,¿Cuál es el número de teléfono principal de la empresa dulces ideas?,success,2.21
+p3_14_cafe_0dB.wav,p3,14,cafe,0dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.39
+p3_14_cafe_5dB.wav,p3,14,cafe,5dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.43
+p3_14_cafe_10dB.wav,p3,14,cafe,10dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.50
+p3_14_clean.wav,p3,14,clean,,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.45
+p3_14_traffic_0dB.wav,p3,14,traffic,0dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.48
+p3_14_traffic_5dB.wav,p3,14,traffic,5dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.51
+p3_14_traffic_10dB.wav,p3,14,traffic,10dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.44
+p3_14_warehouse_0dB.wav,p3,14,warehouse,0dB,azure,Genera el reporte de ventas.,success,1.63
+p3_14_warehouse_5dB.wav,p3,14,warehouse,5dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.38
+p3_14_warehouse_10dB.wav,p3,14,warehouse,10dB,azure,Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto.,success,2.48
+p3_15_cafe_0dB.wav,p3,15,cafe,0dB,azure,Nuestro producto más vendido durante el último trimestre.,success,2.14
+p3_15_cafe_5dB.wav,p3,15,cafe,5dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.16
+p3_15_cafe_10dB.wav,p3,15,cafe,10dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.11
+p3_15_clean.wav,p3,15,clean,,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.08
+p3_15_traffic_0dB.wav,p3,15,traffic,0dB,azure,Nuestro producto más vendido durante el último trimestre.,success,2.16
+p3_15_traffic_5dB.wav,p3,15,traffic,5dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.15
+p3_15_traffic_10dB.wav,p3,15,traffic,10dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.18
+p3_15_warehouse_0dB.wav,p3,15,warehouse,0dB,azure,Uy fue nuestro producto más vendido durante el último trimestre.,success,2.08
+p3_15_warehouse_5dB.wav,p3,15,warehouse,5dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.09
+p3_15_warehouse_10dB.wav,p3,15,warehouse,10dB,azure,¿Cuál fue nuestro producto más vendido durante el último trimestre?,success,2.10
