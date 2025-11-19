@@ -1,0 +1,4 @@
+jupyterlab==4.4.10
+pandas==2.3.3
+typer==0.20.0
+num2words==0.5.13
