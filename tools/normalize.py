@@ -6,7 +6,6 @@ Aplica reglas estrictas de normalización para cálculo de WER en español.
 
 import re
 from typing import Dict, Optional
-import re
 from num2words import num2words
 
 
@@ -40,22 +39,28 @@ class TextNormalizer:
             "2 tb": "dos terabyte",
             "3 tb": "tres terabyte",
             "4 tb": "cuatro terabyte",
-            "1tb": "un terabyte",
-            "2tb": "dos terabyte",
-            "3tb": "tres terabyte",
-            "4tb": "cuatro terabyte",
             "tb": "terabyte",
+
             # Procesadores
-            "i7": "i siete",
-            "i5": "i cinco",
-            "i3": "i tres",
+            "i 7": "i siete",
+            "i 5": "i cinco",
+            "i 3": "i tres",
+
             # Formatos
-            "a4": "a cuatro",
+            "a 4": "a cuatro",
+
             # Modelos
             "xg": "equis ge",
+
             # Códigos/Facturas
             "f a": "efe a",
             "fa": "efe a",
+
+            # Marcas
+            "compufacil": "compu facil",
+            "compufácil": "compu facil",
+            "andinacorp": "andina corp",
+            "duradisco": "dura disco"
         }
     
     def normalize(self, text: str) -> str:
@@ -77,6 +82,12 @@ class TextNormalizer:
         # Paso 2: Separar letras y números pegados (CRÍTICO para Amazon ASR)
         text = self._separate_letters_and_numbers(text)
         
+        # --- NECESARIO PARA WHISPER ---
+        # Paso 2.5: Unir números partidos por guiones (85-20 -> 8520)
+        # Esto asegura que se detecten como series largas
+        text = re.sub(r'(?<=\d)-(?=\d)', '', text)
+        # ---------------------------------------
+
         # Paso 3: Aplicar reemplazos personalizados (antes de eliminar puntuación)
         text = self._apply_custom_replacements(text)
         
@@ -117,10 +128,10 @@ class TextNormalizer:
             Texto con letras y números separados por espacios.
         """
         # Insertar espacio entre letra y número
-        text = re.sub(r'([a-zA-Z])(\d)', r'\1 \2', text)
+        text = re.sub(r'([a-zA-ZáéíóúñÁÉÍÓÚÑ])(\d)', r'\1 \2', text)
         
         # Insertar espacio entre número y letra
-        text = re.sub(r'(\d)([a-zA-Z])', r'\1 \2', text)
+        text = re.sub(r'(\d)([a-zA-ZáéíóúñÁÉÍÓÚÑ])', r'\1 \2', text)
         
         return text
     
@@ -149,9 +160,9 @@ class TextNormalizer:
         def convert_number(match):
             number_str = match.group(0)
             
-            # Si es una secuencia larga (más de 4 dígitos), tratar como código
+            # Si es una secuencia larga (4 o más dígitos), tratar como código
             # y convertir dígito por dígito
-            if len(number_str) > 4:
+            if len(number_str) >= 4:
                 return ' '.join(num2words(int(digit), lang='es') for digit in number_str)
             
             # Números normales: convertir directamente
@@ -204,9 +215,6 @@ class TextNormalizer:
         text = text.strip()
         
         return text
-
-
-
 
 
 def normalize_text(text: str) -> str:
