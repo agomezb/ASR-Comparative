@@ -4,3 +4,5 @@ num2words==0.5.13
 jiwer==4.0.0
 matplotlib==3.10.7
 seaborn==0.13.2
+fuzzywuzzy
+python-Levenshtein
