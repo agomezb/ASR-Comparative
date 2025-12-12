@@ -1,92 +1,37 @@
 import pandas as pd
 from fuzzywuzzy import fuzz
+import json
+from typing import Dict
 
 class NLUEvaluator:
     """
     A class to evaluate ASR transcriptions based on business logic rules for intents and slots.
     """
 
-    # Golden Rules Definition
-    RULES = {
-        1: {
-            "intent": "crear_cotizacion",
-            "keywords": ["cotización", "cotizacion"],
-            "slots": {"cliente": "compufacil", "cantidad": "cinco"}
-        },
-        2: {
-            "intent": "crear_presupuesto",
-            "keywords": ["presupuesto"],
-            "slots": {"cliente": "tecnosys", "cantidad": "diez"}
-        },
-        3: {
-            "intent": "crear_oferta",
-            "keywords": ["oferta", "comercial"],
-            "slots": {"contacto": "carla", "modelo": "equis ge"}
-        },
-        4: {
-            "intent": "crear_proforma",
-            "keywords": ["proforma"],
-            "slots": {"cliente": "andina", "modelo": "core i siete", "cantidad": "dos"}
-        },
-        5: {
-            "intent": "buscar_factura",
-            "keywords": ["busca", "factura"],
-            "slots": {"cliente": "velasco"}
-        },
-        6: {
-            "intent": "generar_factura",
-            "keywords": ["genera", "factura"],
-            "slots": {"serie": "ocho cinco dos cero dos cinco"}
-        },
-        7: {
-            "intent": "verificar_pago",
-            "keywords": ["verifica", "pagada"],
-            "slots": {"factura": "efe a cuatro cero nueve cinco"}
-        },
-        8: {
-            "intent": "consultar_inventario",
-            "keywords": ["cuantas", "sillas"],
-            "slots": {"ubicacion": "guayaquil"}
-        },
-        9: {
-            "intent": "registrar_ingreso",
-            "keywords": ["ingreso", "registra"],
-            "slots": {"cantidad": "cincuenta", "item": "resmas"}
-        },
-        10: {
-            "intent": "consultar_stock",
-            "keywords": ["stock", "dame"],
-            "slots": {"capacidad": "terabyte", "marca": "dura disco"}
-        },
-        11: {
-            "intent": "ver_historial",
-            "keywords": ["historial", "compras"],
-            "slots": {"cliente": "terroso", "tiempo": "seis"}
-        },
-        12: {
-            "intent": "crear_cliente",
-            "keywords": ["crea", "cliente"],
-            "slots": {"ruc": "cero nueve dos dos"}
-        },
-        13: {
-            "intent": "info_contacto",
-            "keywords": ["numero", "telefono","número","teléfono"],
-            "slots": {"empresa": "dulces ideas"}
-        },
-        14: {
-            "intent": "reporte_ventas",
-            "keywords": ["reporte", "ventas"],
-            "slots": {"vendedor": "daniel", "mes": "agosto"}
-        },
-        15: {
-            "intent": "reporte_top_producto",
-            "keywords": ["producto", "vendido"],
-            "slots": {"tiempo": "trimestre"}
-        }
-    }
+    def __init__(self, rules_path: str = "tools/nlu_rules.json"):
+        """
+        Initializes the evaluator by loading rules from a JSON file.
 
-    def __init__(self):
-        pass
+        Args:
+            rules_path (str): The path to the JSON file containing the NLU rules.
+        """
+        self.rules = self._load_rules(rules_path)
+
+    def _load_rules(self, file_path: str) -> Dict[int, Dict]:
+        """
+        Loads NLU rules from a JSON file.
+        Keys are converted from string to integer.
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                rules_as_str_keys = json.load(f)
+                return {int(k): v for k, v in rules_as_str_keys.items()}
+        except FileNotFoundError:
+            print(f"Error: Rules file not found at {file_path}")
+            return {}
+        except json.JSONDecodeError:
+            print(f"Error: Could not decode JSON from {file_path}")
+            return {}
 
     def evaluate_dataset(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -130,7 +75,7 @@ class NLUEvaluator:
                 "nlu_success": False
             })
 
-        if scenario_id not in self.RULES:
+        if not self.rules or scenario_id not in self.rules:
              return pd.Series({
                 "intent_expected": "unknown",
                 "intent_predicted": "error",
@@ -141,7 +86,7 @@ class NLUEvaluator:
                 "nlu_success": False
             })
 
-        rule = self.RULES[scenario_id]
+        rule = self.rules[scenario_id]
         text = str(row['text_normalized']).lower() if pd.notna(row['text_normalized']) else ""
 
         # 1. Intent Logic
@@ -194,6 +139,7 @@ if __name__ == "__main__":
     }
     df_dummy = pd.DataFrame(data)
     
+    # The evaluator now loads rules from 'tools/nlu_rules.json' by default
     evaluator = NLUEvaluator()
     df_result = evaluator.evaluate_dataset(df_dummy)
     
