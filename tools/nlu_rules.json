@@ -2,76 +2,128 @@
     "1": {
         "intent": "crear_cotizacion",
         "keywords": ["cotización", "cotizacion"],
-        "slots": {"cliente": "compufacil", "cantidad": "cinco"}
+        "slots": [
+            {"key": "cliente", "val": "compufacil"},
+            {"key": "cantidad_1", "val": "cinco"},
+            {"key": "producto_1", "val": "monitores led"},
+            {"key": "cantidad_2", "val": "tres"},
+            {"key": "producto_2", "val": "soportes de pared"}
+        ]
     },
     "2": {
         "intent": "crear_presupuesto",
         "keywords": ["presupuesto"],
-        "slots": {"cliente": "tecnosys", "cantidad": "diez"}
+        "slots": [
+            {"key": "cliente", "val": "tecnosys"},
+            {"key": "cantidad_1", "val": "diez"},
+            {"key": "producto_1", "val": "teclados inalambricos"},
+            {"key": "cantidad_2", "val": "diez"},
+            {"key": "producto_2", "val": "ratones opticos"}
+        ]
     },
     "3": {
         "intent": "crear_oferta",
         "keywords": ["oferta", "comercial"],
-        "slots": {"contacto": "carla", "modelo": "equis ge"}
+        "slots": [
+            {"key": "contacto", "val": "carla santana"},
+            {"key": "producto", "val": "escritorio ejecutivo"},
+            {"key": "modelo", "val": "equis ge premium"}
+        ]
     },
     "4": {
         "intent": "crear_proforma",
         "keywords": ["proforma"],
-        "slots": {"cliente": "andina", "modelo": "core i siete", "cantidad": "dos"}
+        "slots": [
+            {"key": "cliente", "val": "andinacorp"},
+            {"key": "cantidad_1", "val": "dos"},
+            {"key": "producto_1", "val": "laptops core i siete"},
+            {"key": "cantidad_2", "val": "tres"},
+            {"key": "producto_2", "val": "impresoras multifuncion"}
+        ]
     },
     "5": {
         "intent": "buscar_factura",
         "keywords": ["busca", "factura"],
-        "slots": {"cliente": "velasco"}
+        "slots": [
+            {"key": "cliente", "val": "velasco y asociados"}
+        ]
     },
     "6": {
         "intent": "generar_factura",
         "keywords": ["genera", "factura"],
-        "slots": {"serie": "ocho cinco dos cero dos cinco"}
+        "slots": [
+            {"key": "serie", "val": "ocho cinco dos cero dos cinco"}
+        ]
     },
     "7": {
         "intent": "verificar_pago",
         "keywords": ["verifica", "pagada"],
-        "slots": {"factura": "efe a cuatro cero nueve cinco"}
+        "slots": [
+            {"key": "factura", "val": "efe a cuatro cero nueve cinco uno seis"}
+        ]
     },
     "8": {
         "intent": "consultar_inventario",
         "keywords": ["cuantas", "sillas"],
-        "slots": {"ubicacion": "guayaquil"}
+        "slots": [
+            {"key": "ubicacion", "val": "bodega de guayaquil"},
+            {"key": "producto", "val": "sillas de oficina ergonomicas"}
+        ]
     },
     "9": {
         "intent": "registrar_ingreso",
         "keywords": ["ingreso", "registra"],
-        "slots": {"cantidad": "cincuenta", "item": "resmas"}
+        "slots": [
+            {"key": "cantidad", "val": "cincuenta"},
+            {"key": "item", "val": "resmas de papel a cuatro"},
+            {"key": "proveedor", "val": "papel mundo"}
+        ]
     },
     "10": {
         "intent": "consultar_stock",
         "keywords": ["stock", "dame"],
-        "slots": {"capacidad": "terabyte", "marca": "dura disco"}
+        "slots": [
+            {"key": "producto", "val": "discos duros"},
+            {"key": "capacidad", "val": "un terabyte"},
+            {"key": "marca", "val": "duradisco"}
+        ]
     },
     "11": {
         "intent": "ver_historial",
         "keywords": ["historial", "compras"],
-        "slots": {"cliente": "terroso", "tiempo": "seis"}
+        "slots": [
+            {"key": "cliente", "val": "eduardo terroso"},
+            {"key": "tiempo", "val": "seis meses"}
+        ]
     },
     "12": {
         "intent": "crear_cliente",
         "keywords": ["crea", "cliente"],
-        "slots": {"ruc": "cero nueve dos dos"}
+        "slots": [
+            {"key": "nombre", "val": "julian antonio perez"},
+            {"key": "ruc", "val": "cero nueve dos dos cero siete ocho tres seis seis cero cero uno"}
+        ]
     },
     "13": {
         "intent": "info_contacto",
-        "keywords": ["numero", "telefono","número","teléfono"],
-        "slots": {"empresa": "dulces ideas"}
+        "keywords": ["numero", "telefono"],
+        "slots": [
+            {"key": "empresa", "val": "dulces ideas"}
+        ]
     },
     "14": {
         "intent": "reporte_ventas",
         "keywords": ["reporte", "ventas"],
-        "slots": {"vendedor": "daniel", "mes": "agosto"}
+        "slots": [
+            {"key": "vendedor", "val": "daniel gomez"},
+            {"key": "mes", "val": "agosto"}
+        ]
     },
     "15": {
         "intent": "reporte_top_producto",
         "keywords": ["producto", "vendido"],
-        "slots": {"tiempo": "trimestre"}
+        "slots": [
+            {"key": "tiempo", "val": "ultimo trimestre"}
+        ]
     }
 }
