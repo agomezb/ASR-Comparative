@@ -159,23 +159,3 @@ class NLUEvaluator:
             "nlu_recall": round(survival_rate, 4), # métrica principal
             "nlu_details": str(details)
         }
-
-if __name__ == "__main__":
-    # Usage example with dummy DataFrame
-    data = {
-        'audio': [1, 2, 3, 1],
-        'text_normalized': [
-            "genera una cotización para el cliente compufacil cantidad cinco", # Perfect match ID 1
-            "presupuesto para tecnosys cantidad diez", # Perfect match ID 2
-            "oferta comercial para carla modelo equis ge", # Perfect match ID 3
-            "cotizacion para cliente compufacil" # Missing 'cinco' for ID 1
-        ]
-    }
-    df_dummy = pd.DataFrame(data)
-    
-    # The evaluator now loads rules from 'tools/nlu_rules.json' by default
-    evaluator = NLUEvaluator()
-    df_result = evaluator.evaluate_dataset(df_dummy)
-    
-    print("Usage Example Results:")
-    print(df_result[['audio', 'text_normalized', 'intent_success', 'slots_success', 'nlu_success']])
