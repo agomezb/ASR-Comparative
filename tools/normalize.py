@@ -52,7 +52,11 @@ class TextNormalizer:
             # Estas suenan como palabras naturales, mejor dejarlas separadas
             # para no confundir al evaluador léxico.
             "dulcesideas": "dulces ideas", # Por si acaso alguien lo une
-            "papelmundo": "papel mundo"
+            "papelmundo": "papel mundo",
+
+            # Variaciones fonéticas de RUC - suenan muy similares
+            "ruck": "ruc",
+            "rug": "ruc",
         }
     
     def normalize(self, text: str) -> str:

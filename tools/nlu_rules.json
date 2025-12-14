@@ -65,7 +65,7 @@
     },
     "8": {
         "intent": "consultar_inventario",
-        "keywords": ["cuantas", "sillas"],
+        "keywords": ["cuántas", "sillas"],
         "slots": [
             {"key": "ubicacion", "val": "bodega de guayaquil"},
             {"key": "producto", "val": "sillas ergonómicas de oficina"}
@@ -102,12 +102,12 @@
         "keywords": ["crea", "cliente"],
         "slots": [
             {"key": "nombre", "val": "julián antonio pérez"},
-            {"key": "ruc", "val": "cero nueve dos dos cero siete ocho tres seis seis cero cero uno"}
+            {"key": "ruc", "val": "ruc cero nueve dos dos cero siete ocho tres seis seis cero cero uno"}
         ]
     },
     "13": {
         "intent": "info_contacto",
-        "keywords": ["numero", "telefono"],
+        "keywords": ["número", "teléfono"],
         "slots": [
             {"key": "empresa", "val": "dulces ideas"}
         ]
@@ -116,7 +116,7 @@
         "intent": "reporte_ventas",
         "keywords": ["reporte", "ventas"],
         "slots": [
-            {"key": "vendedor", "val": "daniel gomez"},
+            {"key": "vendedor", "val": "daniel gómez"},
             {"key": "mes", "val": "agosto"}
         ]
     },
