@@ -36,9 +36,6 @@ class TextNormalizer:
         return {
             # Almacenamiento
             "1 tb": "un terabyte",
-            "2 tb": "dos terabyte",
-            "3 tb": "tres terabyte",
-            "4 tb": "cuatro terabyte",
             "tb": "terabyte",
 
             # Procesadores
@@ -48,6 +45,7 @@ class TextNormalizer:
 
             # Formatos
             "a 4": "a cuatro",
+            "a4": "a cuatro",
 
             # Modelos
             "xg": "equis ge",
@@ -57,8 +55,8 @@ class TextNormalizer:
             "fa": "efe a",
 
             # Marcas
-            "compufacil": "compu facil",
-            "compufácil": "compu facil",
+            "compufacil": "compu fácil",
+            "compufácil": "compu fácil",
             "andinacorp": "andina corp",
             "duradisco": "dura disco"
         }
@@ -77,7 +75,7 @@ class TextNormalizer:
             return ""
         
         # Paso 1: Convertir a minúsculas
-        text = self._to_lowercase(text)
+        text = text.lower()
         
         # Paso 2: Separar letras y números pegados (CRÍTICO para Amazon ASR)
         text = self._separate_letters_and_numbers(text)
@@ -104,11 +102,7 @@ class TextNormalizer:
         text = self._clean_whitespace(text)
         
         return text
-    
-    @staticmethod
-    def _to_lowercase(text: str) -> str:
-        """Convierte el texto a minúsculas."""
-        return text.lower()
+
     
     @staticmethod
     def _separate_letters_and_numbers(text: str) -> str:
