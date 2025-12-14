@@ -47,7 +47,6 @@ class TextNormalizer:
             
             # ID 10: DuraDisco
             "dura disco": "duradisco",
-            "duradisco": "duradisco",
             
             # --- MARCAS DE FRASE (MANTENER SEPARADAS) ---
             # Estas suenan como palabras naturales, mejor dejarlas separadas
@@ -194,7 +193,7 @@ if __name__ == "__main__":
     all_passed = True
     for name, (input_text, expected) in test_cases.items():
         result = n.normalize(input_text)
-        status = "✅ PASS" if result == expected else f"❌ FAIL (Obtenido: {result})"
+        status = "PASS" if result == expected else f"FAIL (Obtenido: {result})"
         print(f"{name}: {status}")
         if result != expected: all_passed = False
     

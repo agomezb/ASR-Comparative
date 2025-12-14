@@ -16,9 +16,9 @@
         "slots": [
             {"key": "cliente", "val": "tecnosys"},
             {"key": "cantidad_1", "val": "diez"},
-            {"key": "producto_1", "val": "teclados inalambricos"},
+            {"key": "producto_1", "val": "teclados inalámbricos"},
             {"key": "cantidad_2", "val": "diez"},
-            {"key": "producto_2", "val": "ratones opticos"}
+            {"key": "producto_2", "val": "ratones ópticos"}
         ]
     },
     "3": {
@@ -38,7 +38,7 @@
             {"key": "cantidad_1", "val": "dos"},
             {"key": "producto_1", "val": "laptops core i siete"},
             {"key": "cantidad_2", "val": "tres"},
-            {"key": "producto_2", "val": "impresoras multifuncion"}
+            {"key": "producto_2", "val": "impresoras multifunción"}
         ]
     },
     "5": {
@@ -59,7 +59,8 @@
         "intent": "verificar_pago",
         "keywords": ["verifica", "pagada"],
         "slots": [
-            {"key": "factura", "val": "efe a cuatro cero nueve cinco uno seis"}
+            {"key": "factura", "val": "efe a cuatro cero nueve cinco uno seis"},
+            {"key": "empresa", "val": "hierros del pacífico"}
         ]
     },
     "8": {
@@ -67,7 +68,7 @@
         "keywords": ["cuantas", "sillas"],
         "slots": [
             {"key": "ubicacion", "val": "bodega de guayaquil"},
-            {"key": "producto", "val": "sillas de oficina ergonomicas"}
+            {"key": "producto", "val": "sillas ergonómicas de oficina"}
         ]
     },
     "9": {
@@ -100,7 +101,7 @@
         "intent": "crear_cliente",
         "keywords": ["crea", "cliente"],
         "slots": [
-            {"key": "nombre", "val": "julian antonio perez"},
+            {"key": "nombre", "val": "julián antonio pérez"},
             {"key": "ruc", "val": "cero nueve dos dos cero siete ocho tres seis seis cero cero uno"}
         ]
     },
@@ -123,7 +124,7 @@
         "intent": "reporte_top_producto",
         "keywords": ["producto", "vendido"],
         "slots": [
-            {"key": "tiempo", "val": "ultimo trimestre"}
+            {"key": "tiempo", "val": "último trimestre"}
         ]
     }
 }
