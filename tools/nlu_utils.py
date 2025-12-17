@@ -97,6 +97,7 @@ class NLUEvaluator:
             "nlu_recall": slot_evaluation["nlu_recall"],
             "nlu_total": slot_evaluation["nlu_total"],
             "nlu_details": slot_evaluation["nlu_details"],
+            "nlu_slot_status": slot_evaluation["nlu_slot_status"],
             # final results
             "slots_success": slots_success,
             "nlu_success": nlu_success
@@ -119,6 +120,7 @@ class NLUEvaluator:
         hits = 0
         misses = 0
         details = []
+        slot_status = {}
         
         for slot in expected_slots_list:
             # Extraemos clave y valor del nuevo formato de lista
@@ -144,9 +146,11 @@ class NLUEvaluator:
             if score >= 80:
                 hits += 1
                 details.append(f"{key_name}: '{target_val}' encontrado (Score: {score})")
+                slot_status[key_name] = True
             else:
                 misses += 1
                 details.append(f"{key_name}: '{target_val}' perdido (Score: {score})")
+                slot_status[key_name] = False
 
         # Cálculo final de la métrica
         total_expected = hits + misses
@@ -157,5 +161,6 @@ class NLUEvaluator:
             "nlu_misses": misses,
             "nlu_total": total_expected,
             "nlu_recall": round(survival_rate, 4), # métrica principal
-            "nlu_details": str(details)
+            "nlu_details": str(details),
+            "nlu_slot_status": slot_status
         }
