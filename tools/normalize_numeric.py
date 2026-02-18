@@ -7,7 +7,8 @@ from typing import Dict
 # ==============================================================================
 class TextNormalizerNumeric:
     def __init__(self):
-        self.technical_replacements = {"tb": "terabyte", "1tb": "1 terabyte", "i 7": "i7", "a 4": "a4"}
+        self.technical_replacements = {
+            "tb": "terabyte", "1tb": "1 terabyte", "i 7": "i7", "a 4": "a4", "x g": "xg", "f a": "fa"}
         self.oov_replacements = {
             "compu facil": "compufacil", "compu fácil": "compufacil", "compufácil": "compufacil",
             "tecno sis": "tecnosys", "techno sys": "tecnosys", "tecno sys": "tecnosys", "tecnosis": "tecnosys",
@@ -60,9 +61,5 @@ class TextNormalizerNumeric:
         return re.sub(r'(\d+)([a-zA-Záéíóúñ])', lambda m: f"{m.group(1)} {m.group(2)}" if is_code(m.group(1)) else m.group(0), text)
 
     def _process_numeric_sequences(self, text):
-        text = re.sub(r'(?<=\d)[\s-]+(?=\d)', '', text) # Unify
-        def convert(m):
-            s = m.group(0)
-            if (s.startswith('0') and len(s) > 1) or len(s) >= 4: return " ".join(list(s))
-            return s
-        return re.sub(r'\b\d+\b', convert, text)
+        # Unify fragments: 80 20 25 -> 802025, 80-20-25 -> 802025
+        return re.sub(r'(?<=\d)[\s-]+(?=\d)', '', text)
