@@ -1,169 +1,129 @@
 {
-    "1": {
-        "keywords": [
-            {"key": "accion", "val": "genera"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "documento", "val": "cotización"},
-            {"key": "domain", "val": "compufacil"},
-            {"key": "cantidad", "val": "5"},
-            {"key": "producto", "val": "monitores"},
-            {"key": "producto", "val": "led"},
-            {"key": "cantidad", "val": "3"},
-            {"key": "producto", "val": "soportes"},
-            {"key": "producto", "val": "pared"}
-        ]
-    },
-    "2": {
-        "keywords": [
-            {"key": "accion", "val": "prepara"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "documento", "val": "presupuesto"},
-            {"key": "cantidad", "val": "10"},
-            {"key": "producto", "val": "teclados"},
-            {"key": "producto", "val": "inalámbricos"},
-            {"key": "cantidad", "val": "10"},
-            {"key": "producto", "val": "ratones"},
-            {"key": "producto", "val": "ópticos"},
-            {"key": "domain", "val": "tecnosys"}
-        ]
-    },
-    "3": {
-        "keywords": [
-            {"key": "accion", "val": "crea"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "documento", "val": "oferta"},
-            {"key": "contacto", "val": "carla"},
-            {"key": "contacto", "val": "santana"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "producto", "val": "escritorio"},
-            {"key": "producto", "val": "ejecutivo"},
-            {"key": "producto", "val": "xg"},
-            {"key": "producto", "val": "premium"}
-        ]
-    },
-    "4": {
-        "keywords": [
-            {"key": "accion", "val": "genera"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "documento", "val": "proforma"},
-            {"key": "domain", "val": "andinacorp"},
-            {"key": "cantidad", "val": "2"},
-            {"key": "producto", "val": "laptops"},
-            {"key": "producto", "val": "core"},
-            {"key": "producto", "val": "i7"},
-            {"key": "cantidad", "val": "3"},
-            {"key": "producto", "val": "impresoras"},
-            {"key": "producto", "val": "multifunción"}
-        ]
-    },
-    "5": {
-        "keywords": [
-            {"key": "accion", "val": "busca"},
-            {"key": "documento", "val": "ultima"},
-            {"key": "documento", "val": "factura"},
-            {"key": "cliente", "val": "velasco"},
-            {"key": "cliente", "val": "asociados"}
-        ]
-    },
-    "6": {
-        "keywords": [
-            {"key": "accion", "val": "genera"},
-            {"key": "documento", "val": "factura"},
-            {"key": "documento", "val": "pedido"},
-            {"key": "documento", "val": "compra"},
-            {"key": "codigo", "val": "852025"}
-        ]
-    },
-    "7": {
-        "keywords": [
-            {"key": "accion", "val": "verifica"},
-            {"key": "documento", "val": "factura"},
-            {"key": "codigo", "val": "fa"},
-            {"key": "codigo", "val": "409516"},
-            {"key": "cliente", "val": "hierros"},
-            {"key": "cliente", "val": "pacífico"},
-            {"key": "estado", "val": "pagada"}
-        ]
-    },
-    "8": {
-        "keywords": [
-            {"key": "accion", "val": "cuántas"},
-            {"key": "producto", "val": "sillas"},
-            {"key": "producto", "val": "ergonómicas"},
-            {"key": "producto", "val": "oficina"},
-            {"key": "ubicacion", "val": "bodega"},
-            {"key": "ubicacion", "val": "guayaquil"}
-        ]
-    },
-    "9": {
-        "keywords": [
-            {"key": "documento", "val": "ingreso"},
-            {"key": "cantidad", "val": "50"},
-            {"key": "producto", "val": "resmas"},
-            {"key": "producto", "val": "papel"},
-            {"key": "producto", "val": "a4"}
-        ]
-    },
-    "10": {
-        "keywords": [
-            {"key": "accion", "val": "dame"},
-            {"key": "accion", "val": "stock"},
-            {"key": "producto", "val": "discos"},
-            {"key": "producto", "val": "duros"},
-            {"key": "producto", "val": "1"},
-            {"key": "producto", "val": "terabyte"},
-            {"key": "domain", "val": "duradisco"}
-        ]
-    },
-    "11": {
-        "keywords": [
-            {"key": "accion", "val": "muéstrame"},
-            {"key": "accion", "val": "historial"},
-            {"key": "accion", "val": "compras"},
-            {"key": "cliente", "val": "eduardo"},
-            {"key": "cliente", "val": "terroso"},
-            {"key": "cantidad", "val": "6"},
-            {"key": "tiempo", "val": "meses"}
-        ]
-    },
-    "12": {
-        "keywords": [
-            {"key": "accion", "val": "crea"},
-            {"key": "cantidad", "val": "1"},
-            {"key": "documento", "val": "cliente"},
-            {"key": "cliente", "val": "julián"},
-            {"key": "cliente", "val": "antonio"},
-            {"key": "cliente", "val": "pérez"},
-            {"key": "domain", "val": "ruc"},
-            {"key": "codigo", "val": "0922078366001"}
-        ]
-    },
-    "13": {
-        "keywords": [
-            {"key": "accion", "val": "cuál"},
-            {"key": "accion", "val": "teléfono"},
-            {"key": "domain", "val": "dulces"},
-            {"key": "domain", "val": "ideas"}
-        ]
-    },
-    "14": {
-        "keywords": [
-            {"key": "accion", "val": "genera"},
-            {"key": "documento", "val": "reporte"},
-            {"key": "documento", "val": "ventas"},
-            {"key": "cliente", "val": "daniel"},
-            {"key": "cliente", "val": "gómez"},
-            {"key": "tiempo", "val": "agosto"}
-        ]
-    },
-    "15": {
-        "keywords": [
-            {"key": "accion", "val": "cuál"},
-            {"key": "accion", "val": "producto"},
-            {"key": "accion", "val": "más"},
-            {"key": "accion", "val": "vendido"},
-            {"key": "tiempo", "val": "último"},
-            {"key": "tiempo", "val": "trimestre"}
-        ]
-    }
+  "1": {
+    "keywords": [
+      {"key": "cliente", "val": "compufacil", "oov": true},
+      {"key": "cantidad", "val": "5"},
+      {"key": "producto", "val": "monitores"},
+      {"key": "atributo", "val": "led"},
+      {"key": "cantidad", "val": "3"},
+      {"key": "producto", "val": "soportes"},
+      {"key": "atributo", "val": "pared"}
+    ]
+  },
+  "2": {
+    "keywords": [
+      {"key": "cantidad", "val": "10"},
+      {"key": "producto", "val": "teclados"},
+      {"key": "atributo", "val": "inalámbricos"},
+      {"key": "cantidad", "val": "10"},
+      {"key": "producto", "val": "ratones"},
+      {"key": "atributo", "val": "ópticos"},
+      {"key": "cliente", "val": "tecnosys", "oov": true}
+    ]
+  },
+  "3": {
+    "keywords": [
+      {"key": "cliente", "val": "carla"},
+      {"key": "cliente", "val": "santana"},
+      {"key": "cantidad", "val": "un"},
+      {"key": "producto", "val": "escritorio"},
+      {"key": "atributo", "val": "ejecutivo"},
+      {"key": "codigo", "val": "xg"},
+      {"key": "atributo", "val": "premium"}
+    ]
+  },
+  "4": {
+    "keywords": [
+      {"key": "cliente", "val": "andinacorp", "oov": true},
+      {"key": "cantidad", "val": "2"},
+      {"key": "producto", "val": "laptops"},
+      {"key": "atributo", "val": "core"},
+      {"key": "codigo", "val": "i7"},
+      {"key": "cantidad", "val": "3"},
+      {"key": "producto", "val": "impresoras"},
+      {"key": "atributo", "val": "multifunción"}
+    ]
+  },
+  "5": {
+    "keywords": [
+      {"key": "cliente", "val": "velasco"},
+      {"key": "cliente", "val": "asociados"}
+    ]
+  },
+  "6": {
+    "keywords": [
+      {"key": "codigo", "val": "852025"}
+    ]
+  },
+  "7": {
+    "keywords": [
+      {"key": "codigo", "val": "fa"},
+      {"key": "codigo", "val": "409516"},
+      {"key": "cliente", "val": "hierros"},
+      {"key": "cliente", "val": "pacífico"}
+    ]
+  },
+  "8": {
+    "keywords": [
+      {"key": "producto", "val": "sillas"},
+      {"key": "atributo", "val": "ergonómicas"},
+      {"key": "atributo", "val": "oficina"},
+      {"key": "ubicacion", "val": "guayaquil"}
+    ]
+  },
+  "9": {
+    "keywords": [
+      {"key": "cantidad", "val": "50"},
+      {"key": "atributo", "val": "resmas"},
+      {"key": "producto", "val": "papel"},
+      {"key": "codigo", "val": "a4"},
+      {"key": "proveedor", "val": "papel"},
+      {"key": "proveedor", "val": "mundo"}
+    ]
+  },
+  "10": {
+    "keywords": [
+      {"key": "producto", "val": "discos"},
+      {"key": "atributo", "val": "duros"},
+      {"key": "atributo", "val": "un"},
+      {"key": "atributo", "val": "terabyte"},
+      {"key": "marca", "val": "duradisco", "oov": true}
+    ]
+  },
+  "11": {
+    "keywords": [
+      {"key": "cliente", "val": "eduardo"},
+      {"key": "cliente", "val": "terroso"},
+      {"key": "cantidad", "val": "6"},
+      {"key": "tiempo", "val": "meses"}
+    ]
+  },
+  "12": {
+    "keywords": [
+      {"key": "cliente", "val": "julián"},
+      {"key": "cliente", "val": "antonio"},
+      {"key": "cliente", "val": "pérez"},
+      {"key": "atributo", "val": "ruc", "oov": true},
+      {"key": "codigo", "val": "0922078366001"}
+    ]
+  },
+  "13": {
+    "keywords": [
+      {"key": "cliente", "val": "dulces"},
+      {"key": "cliente", "val": "ideas"}
+    ]
+  },
+  "14": {
+    "keywords": [
+      {"key": "vendedor", "val": "daniel"},
+      {"key": "vendedor", "val": "gómez"},
+      {"key": "tiempo", "val": "agosto"}
+    ]
+  },
+  "15": {
+    "keywords": [
+      {"key": "tiempo", "val": "último"},
+      {"key": "tiempo", "val": "trimestre"}
+    ]
+  }
 }
