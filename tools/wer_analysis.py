@@ -58,7 +58,7 @@ class WERAnalyzer:
 
     def calculate_wer_by_provider_snr(self):
         """
-        Agrupa los datos por proveedor y nivel de ruido (SNR), calculando el WER promedio
+        Agrupa los datos por ASR y nivel de ruido (SNR), calculando el WER promedio
         y sus intervalos de confianza.
         
         Returns:
@@ -94,7 +94,7 @@ class WERAnalyzer:
 
     def calculate_global_wer(self):
         """
-        Calcula el WER global por proveedor (sin desglosar por SNR).
+        Calcula el WER global por ASR (sin desglosar por SNR).
         
         Returns:
             pd.DataFrame: DataFrame con columnas [provider, wer_global, ci_lower, ci_upper]
@@ -102,7 +102,7 @@ class WERAnalyzer:
         if 'provider' not in self.df_wer.columns:
             raise ValueError("El DataFrame debe contener la columna 'provider'.")
 
-        # Agrupar por proveedor y calcular totales
+        # Agrupar por ASR y calcular totales
         if 'errors' in self.df_wer.columns and 'reference_words' in self.df_wer.columns:
             summary_df = self.df_wer.groupby('provider').agg(
                 total_errors=('errors', 'sum'),
@@ -140,7 +140,7 @@ class WERAnalyzer:
 
     def perform_statistical_tests(self, df=None):
         """
-        Realiza pruebas estadísticas (Friedman y Wilcoxon post-hoc) para comparar proveedores.
+        Realiza pruebas estadísticas (Friedman y Wilcoxon post-hoc) para comparar ASR.
         
         Args:
             df (pd.DataFrame, optional): DataFrame sobre el cual realizar las pruebas. 
@@ -177,22 +177,65 @@ class WERAnalyzer:
         if p_value < 0.05:
             comparisons = []
             p_values = []
+            effect_sizes = []
             pairs = list(itertools.combinations(pivot_wer.columns, 2))
             n_comparisons = len(pairs)
             
             for p1, p2 in pairs:
-                stat_w, p_w = stats.wilcoxon(pivot_wer[p1], pivot_wer[p2])
+                # Wilcoxon test
+                try:
+                    stat_w, p_w = stats.wilcoxon(pivot_wer[p1], pivot_wer[p2])
+                except ValueError:
+                    # Handle case where all differences are zero
+                    stat_w, p_w = 0, 1.0
+                
                 comparisons.append(f"{p1} vs {p2}")
                 p_values.append(p_w)
+                
+                # Effect size (r = Z / sqrt(N))
+                n = len(pivot_wer)
+                
+                # Z-score approximation
+                mu = n * (n + 1) / 4
+                se = np.sqrt(n * (n + 1) * (2 * n + 1) / 24)
+                
+                if se > 0:
+                    z = (stat_w - mu) / se
+                    r = abs(z) / np.sqrt(n)
+                else:
+                    r = 0.0
+                
+                effect_sizes.append(r)
             
-            p_adjusted = [min(1.0, p * n_comparisons) for p in p_values]
+            # Holm-Bonferroni correction
+            # 1. Sort p-values
+            sorted_indices = np.argsort(p_values)
+            sorted_p_values = np.array(p_values)[sorted_indices]
+            
+            # 2. Calculate adjusted p-values
+            # p_adj = min(1, p * (m - rank + 1))
+            # Ensure monotonicity: p_adj[i] = max(p_adj[i], p_adj[i-1])
+            p_adjusted_sorted = []
+            for i, p in enumerate(sorted_p_values):
+                m_i = n_comparisons - i
+                p_adj = min(1.0, p * m_i)
+                if i > 0:
+                    p_adj = max(p_adj, p_adjusted_sorted[-1])
+                p_adjusted_sorted.append(p_adj)
+            
+            # 3. Restore original order
+            p_adjusted = [0.0] * n_comparisons
+            for i, idx in enumerate(sorted_indices):
+                p_adjusted[idx] = p_adjusted_sorted[i]
+            
             reject = [p < 0.05 for p in p_adjusted]
             
             wilcoxon_df = pd.DataFrame({
                 'Comparación': comparisons,
                 'p-value original': p_values,
-                'p-value adj (Bonferroni)': p_adjusted,
-                'Significativo': reject
+                'p-value adj (Holm-Bonferroni)': p_adjusted,
+                'Significativo': reject,
+                'Tamaño del Efecto (r)': effect_sizes
             })
             
         return friedman_result, wilcoxon_df
@@ -210,7 +253,7 @@ class WERVisualizer:
         }
         self.snr_order = ['clean', '10dB', '5dB', '0dB']
 
-    def plot_wer_by_snr(self, df_results, title='WER por Nivel de Ruido y Proveedor'):
+    def plot_wer_by_snr(self, df_results, title='WER por Nivel de Ruido y ASR'):
         """
         Genera un gráfico de líneas con barras de error para el WER por SNR.
         """
@@ -251,8 +294,7 @@ class WERVisualizer:
 
         plt.xlabel('Nivel de Ruido (SNR)', fontsize=13, fontweight='bold')
         plt.ylabel('WER Promedio (con IC 95%)', fontsize=13, fontweight='bold')
-        plt.title(title, fontsize=15, fontweight='bold', pad=20)
-        plt.legend(title='Proveedor', fontsize=11, title_fontsize=12, loc='best', framealpha=0.9)
+        plt.legend(title='ASR', fontsize=11, title_fontsize=12, loc='best', framealpha=0.9)
         plt.grid(True, alpha=0.3, linestyle='--')
         plt.tight_layout()
         plt.show()
@@ -272,7 +314,7 @@ class WERVisualizer:
         if 'clean' in pivot_df.columns and '0dB' in pivot_df.columns:
             pivot_df['Degradación (Delta)'] = (pivot_df['0dB'] - pivot_df['clean']) / pivot_df['clean']
             
-        pivot_df = pivot_df.reset_index().rename(columns={'provider': 'Motor'})
+        pivot_df = pivot_df.reset_index().rename(columns={'provider': 'ASR'})
         
         print("\nTabla Comparativa de WER por Escenario y Degradación:")
         return pivot_df.style.format({
@@ -309,9 +351,8 @@ class WERVisualizer:
         bars = plt.bar(summary_df['provider'], summary_df['wer_global'], capsize=10, 
                        yerr=yerr, color=palette)
         
-        plt.title('WER Global por Proveedor con Intervalos de Confianza (95%)', fontsize=16)
         plt.ylabel('WER (Word Error Rate)', fontsize=12)
-        plt.xlabel('Proveedor', fontsize=12)
+        plt.xlabel('ASR', fontsize=12)
         plt.grid(axis='y', linestyle='--', alpha=0.7)
         
         for bar in bars:
@@ -328,14 +369,14 @@ class WERVisualizer:
         """
         # Renombrar para visualización
         display_df = summary_df.rename(columns={
-            'provider': 'Motor',
+            'provider': 'ASR',
             'wer_global': 'WER Global',
             'ci_lower': 'IC 95% Inf',
             'ci_upper': 'IC 95% Sup'
         })
         
         print("Tabla Comparativa: Rendimiento Global con Intervalos de Confianza")
-        return display_df[['Motor', 'WER Global', 'IC 95% Inf', 'IC 95% Sup']].style.format({
+        return display_df[['ASR', 'WER Global', 'IC 95% Inf', 'IC 95% Sup']].style.format({
             'WER Global': '{:.2%}',
             'IC 95% Inf': '{:.2%}',
             'IC 95% Sup': '{:.2%}'
@@ -355,7 +396,95 @@ class WERVisualizer:
         print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}")
         
         if p_value < 0.05 and wilcoxon_df is not None:
-            print(">> Diferencias significativas encontradas. Realizando post-hoc (Wilcoxon + Bonferroni)...")
-            display(wilcoxon_df)
+            print(">> Diferencias significativas encontradas. Realizando post-hoc (Wilcoxon + Holm-Bonferroni)...")
+            display(wilcoxon_df.style.format({
+                'p-value original': '{:.4e}',
+                'p-value adj (Holm-Bonferroni)': '{:.4e}',
+                'Tamaño del Efecto (r)': '{:.4f}'
+            }).hide(axis='index').set_properties(**{
+                'text-align': 'center',
+                'padding': '8px'
+            }).set_table_styles([
+                {'selector': 'th', 'props': [('text-align', 'center'), ('font-weight', 'bold')]}
+            ]))
         else:
             print(">> No se encontraron diferencias significativas.")
+
+    def plot_wer_boxplot(self, df_wer, title='Distribución de WER por ASR', show_stats=True):
+        """
+        Genera un gráfico de caja (boxplot) de la distribución de WER por ASR.
+        Opcionalmente muestra la media como línea punteada y estadísticas en consola.
+        """
+        if 'provider' not in df_wer.columns or 'wer' not in df_wer.columns:
+            raise ValueError("El DataFrame debe contener las columnas 'provider' y 'wer'.")
+
+        providers = sorted(df_wer['provider'].unique())
+        data_by_provider = [df_wer[df_wer['provider'] == p]['wer'].values for p in providers]
+        palette = [self.colors.get(p, '#333333') for p in providers]
+
+        fig, axes = plt.subplots(1, len(providers), figsize=(5 * len(providers), 6))
+        if len(providers) == 1:
+            axes = [axes]
+
+        for idx, provider in enumerate(providers):
+            provider_data = df_wer[df_wer['provider'] == provider]['wer']
+            bp = axes[idx].boxplot(
+                provider_data,
+                labels=[provider.capitalize()],
+                patch_artist=True,
+                widths=0.6
+            )
+            if bp['boxes']:
+                bp['boxes'][0].set_facecolor(palette[idx])
+            axes[idx].set_title(f'WER - {provider.capitalize()}', fontsize=14, fontweight='bold')
+            axes[idx].set_ylabel('WER (Word Error Rate)', fontsize=12)
+            axes[idx].set_xlabel('ASR', fontsize=12)
+            axes[idx].grid(True, alpha=0.3)
+
+            if show_stats:
+                mean_wer = provider_data.mean()
+                median_wer = provider_data.median()
+                axes[idx].axhline(y=mean_wer, color='red', linestyle='--', linewidth=1, alpha=0.7, label=f'Media: {mean_wer:.3f}')
+                axes[idx].legend(loc='upper right', fontsize=10)
+
+        plt.tight_layout()
+        plt.show()
+
+        if show_stats:
+            stats_data = []
+            for provider in providers:
+                provider_data = df_wer[df_wer['provider'] == provider]['wer']
+                q1 = provider_data.quantile(0.25)
+                q3 = provider_data.quantile(0.75)
+                iqr = q3 - q1
+                
+                stats_data.append({
+                    'ASR': provider.capitalize(),
+                    'Media': provider_data.mean(),
+                    'Mediana': provider_data.median(),
+                    'Mínimo': provider_data.min(),
+                    'Máximo': provider_data.max(),
+                    'Desv. Est.': provider_data.std(),
+                    'Q1': q1,
+                    'Q3': q3,
+                    'IQR': iqr,
+                    'Muestras': len(provider_data)
+                })
+            
+            stats_df = pd.DataFrame(stats_data)
+            print("\nEstadísticas de WER por ASR:")
+            return stats_df.style.format({
+                'Media': '{:.4f}',
+                'Mediana': '{:.4f}',
+                'Mínimo': '{:.4f}',
+                'Máximo': '{:.4f}',
+                'Desv. Est.': '{:.4f}',
+                'Q1': '{:.4f}',
+                'Q3': '{:.4f}',
+                'IQR': '{:.4f}'
+            }).hide(axis='index').set_properties(**{
+                'text-align': 'center',
+                'padding': '8px'
+            }).set_table_styles([
+                {'selector': 'th', 'props': [('text-align', 'center'), ('font-weight', 'bold')]}
+            ])
