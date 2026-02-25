@@ -301,6 +301,42 @@ class CERAnalyzer:
             
         return pd.DataFrame(results)
 
+    def get_cer_by_provider_snr_category_with_ci(self) -> pd.DataFrame:
+        """
+        Calcula CER promedio y sus intervalos de confianza por proveedor, SNR y categoría.
+        
+        Returns:
+            DataFrame con columnas: provider, snr, category, cer, ci_lower, ci_upper, cer_pct, ci_lower_pct, ci_upper_pct, count.
+        """
+        results = []
+        
+        # Agrupar por provider, snr y category
+        groups = self.cer_df.groupby(['provider', 'snr', 'category'])
+        
+        for (provider, snr, category), group in groups:
+            # Cálculo puntual
+            total_dist = group['edit_distance'].sum()
+            total_len = group['ref_length'].sum()
+            cer = total_dist / total_len if total_len > 0 else 0.0
+            
+            # Cálculo de IC
+            lower, upper = self.bootstrap_cer_ci(group)
+            
+            results.append({
+                'provider': provider,
+                'snr': snr,
+                'category': category,
+                'cer': cer,
+                'ci_lower': lower,
+                'ci_upper': upper,
+                'cer_pct': cer * 100,
+                'ci_lower_pct': lower * 100,
+                'ci_upper_pct': upper * 100,
+                'count': len(group)
+            })
+            
+        return pd.DataFrame(results)
+
     def get_grouped_by_provider_snr_category(self) -> pd.DataFrame:
         """
         Agrupa por ASR (provider), SNR y categoría; suma edit_distance y ref_length;
@@ -356,6 +392,39 @@ class CERVisualizer:
     """
     Responsable de mostrar tablas y resultados CER en el notebook (HTML, display).
     """
+
+    @staticmethod
+    def display_detailed_cer_table(df_stats: pd.DataFrame, title: str = "Degradación del CER global por categoría semántica y nivel de estrés acústico") -> None:
+        """
+        Muestra una tabla detallada con CER medio e intervalos de confianza,
+        agrupada por Categoría y Nivel de Ruido (filas) y ASR (columnas).
+        Formato: "Media% [IC Inf% - IC Sup%]"
+        """
+        if df_stats.empty:
+            print("No hay datos para mostrar.")
+            return
+
+        # Formatear celda
+        def format_cell(row):
+            return f"{row['cer_pct']:.2f}% [{row['ci_lower_pct']:.2f}% - {row['ci_upper_pct']:.2f}%]"
+
+        df_formatted = df_stats.copy()
+        df_formatted['formatted'] = df_formatted.apply(format_cell, axis=1)
+        
+        # Pivotar: Index = [category, snr], Columns = provider
+        pivot_table = df_formatted.pivot(index=['category', 'snr'], columns='provider', values='formatted')
+        
+        # Reordenar niveles de SNR si es necesario
+        snr_order = ['clean', '10dB', '5dB', '0dB']
+        # Reordenar categorías si es necesario
+        cat_order = ['Vocabulario de Negocio', 'Nombres Propios', 'Números/Cod.Alfa']
+        
+        # Crear un índice categórico para ordenar correctamente
+        pivot_table = pivot_table.reindex(cat_order, level=0)
+        pivot_table = pivot_table.reindex(snr_order, level=1)
+
+        display(HTML(f"<h3>{title}</h3>"))
+        display(HTML(pivot_table.to_html()))
 
     @staticmethod
     def display_global_by_category(df: pd.DataFrame, title: str = "Global CER by Category") -> None:
