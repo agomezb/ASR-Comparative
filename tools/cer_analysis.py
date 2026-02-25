@@ -98,21 +98,26 @@ class CERAnalyzer:
                     r = 0.0
                 effect_sizes.append(r)
             
-            # Ajuste de Bonferroni
-            p_adjusted = [min(1.0, p * n_comparisons) for p in p_values]
-            
-            # Asteriscos de significancia
-            significance = []
-            for p in p_adjusted:
-                if p < 0.001: significance.append("***")
-                elif p < 0.01: significance.append("**")
-                elif p < 0.05: significance.append("*")
-                else: significance.append("ns")
-            
+            # Ajuste Holm-Bonferroni (igual que en WER)
+            sorted_indices = np.argsort(p_values)
+            sorted_p_values = np.array(p_values)[sorted_indices]
+            p_adjusted_sorted = []
+            for i, p in enumerate(sorted_p_values):
+                m_i = n_comparisons - i
+                p_adj = min(1.0, p * m_i)
+                if i > 0:
+                    p_adj = max(p_adj, p_adjusted_sorted[-1])
+                p_adjusted_sorted.append(p_adj)
+            p_adjusted = [0.0] * n_comparisons
+            for i, idx in enumerate(sorted_indices):
+                p_adjusted[idx] = p_adjusted_sorted[i]
+            reject = [p < 0.05 for p in p_adjusted]
+
             wilcoxon_df = pd.DataFrame({
                 'Comparación': comparisons,
-                'p-value adj (Bonferroni)': p_adjusted,
-                'Significancia': significance,
+                'p-value original': p_values,
+                'p-value adj (Holm-Bonferroni)': p_adjusted,
+                'Significativo': reject,
                 'Tamaño del Efecto (r)': effect_sizes
             })
             
@@ -480,6 +485,54 @@ class CERVisualizer:
             
         plt.tight_layout()
         plt.show()
+
+    @staticmethod
+    def display_global_cer_table(summary_df: pd.DataFrame):
+        """
+        Muestra la tabla de CER global formateada (estilo WER: ASR, CER Global, IC 95% Inf, IC 95% Sup).
+        """
+        display_df = summary_df.rename(columns={
+            'provider': 'ASR',
+            'cer_pct': 'CER Global',
+            'ci_lower_pct': 'IC 95% Inf',
+            'ci_upper_pct': 'IC 95% Sup'
+        })
+        print("Tabla Comparativa: Rendimiento Global con Intervalos de Confianza")
+        return display_df[['ASR', 'CER Global', 'IC 95% Inf', 'IC 95% Sup']].style.format({
+            'CER Global': '{:.2f}%',
+            'IC 95% Inf': '{:.2f}%',
+            'IC 95% Sup': '{:.2f}%'
+        }).hide(axis='index')
+
+    @staticmethod
+    def display_global_statistical_results(friedman_result, wilcoxon_df, title: str = "Análisis Estadístico de Significancia (CER Global)") -> None:
+        """
+        Muestra los resultados de Friedman y post-hoc (Wilcoxon + Holm-Bonferroni) para CER global.
+        Formato similar a 2_wer.ipynb.
+        """
+        stat, p_value = friedman_result
+        if stat is None:
+            print(f"\n{title}")
+            print("No se pudieron realizar las pruebas estadísticas (datos insuficientes o estructura incorrecta).")
+            return
+
+        print(f"\n{title}")
+        print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}")
+
+        if p_value < 0.05 and wilcoxon_df is not None:
+            print(">> Diferencias significativas encontradas. Realizando post-hoc (Wilcoxon + Holm-Bonferroni)...")
+            display(wilcoxon_df.style.format({
+                'p-value original': '{:.4e}',
+                'p-value adj (Holm-Bonferroni)': '{:.4e}',
+                'Tamaño del Efecto (r)': '{:.4f}'
+            }).hide(axis='index').set_properties(**{
+                'text-align': 'center',
+                'padding': '8px'
+            }).set_table_styles([
+                {'selector': 'th', 'props': [('text-align', 'center'), ('font-weight', 'bold')]}
+            ]))
+        else:
+            print(">> No se encontraron diferencias significativas.")
 
     @staticmethod
     def display_cer_statistics(df_stats: pd.DataFrame, title: str = "Estadísticas Descriptivas de CER") -> None:

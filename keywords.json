@@ -3,6 +3,12 @@
     "text": "genera una cotización para el cliente compufacil con 5 monitores led y 3 soportes de pared",
     "keywords": [
       {
+        "word_index": 2,
+        "val": "cotización",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 6,
         "val": "compufacil",
         "oov": true,
@@ -16,10 +22,34 @@
         "category": "Datos Críticos (Num/Alfa)"
       },
       {
+        "word_index": 9,
+        "val": "monitores",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 10,
+        "val": "led",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 12,
         "val": "3",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 13,
+        "val": "soportes",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 15,
+        "val": "pared",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
@@ -27,16 +57,46 @@
     "text": "prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a tecnosys",
     "keywords": [
       {
+        "word_index": 2,
+        "val": "presupuesto",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 5,
         "val": "10",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
       },
       {
+        "word_index": 6,
+        "val": "teclados",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 7,
+        "val": "inalámbricos",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 9,
         "val": "10",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 10,
+        "val": "ratones",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 11,
+        "val": "ópticos",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
       },
       {
         "word_index": 15,
@@ -50,6 +110,18 @@
   "3": {
     "text": "crea una oferta comercial para carla santana con un escritorio ejecutivo modelo xg premium",
     "keywords": [
+      {
+        "word_index": 2,
+        "val": "oferta",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 3,
+        "val": "comercial",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 5,
         "val": "carla",
@@ -69,16 +141,40 @@
         "category": "Datos Críticos (Num/Alfa)"
       },
       {
+        "word_index": 9,
+        "val": "escritorio",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 10,
+        "val": "ejecutivo",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 12,
         "val": "xg",
         "subcategory": "codigo",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 13,
+        "val": "premium",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
   "4": {
     "text": "genera una proforma para andinacorp incluye 2 laptops core i7 y 3 impresoras multifunción",
     "keywords": [
+      {
+        "word_index": 2,
+        "val": "proforma",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 4,
         "val": "andinacorp",
@@ -93,6 +189,18 @@
         "category": "Datos Críticos (Num/Alfa)"
       },
       {
+        "word_index": 7,
+        "val": "laptops",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 8,
+        "val": "core",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 9,
         "val": "i7",
         "subcategory": "codigo",
@@ -103,12 +211,36 @@
         "val": "3",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 12,
+        "val": "impresoras",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 13,
+        "val": "multifunción",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
   "5": {
     "text": "busca la última factura del cliente velasco y asociados y reenvíala a su correo",
     "keywords": [
+      {
+        "word_index": 2,
+        "val": "última",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 3,
+        "val": "factura",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 6,
         "val": "velasco",
@@ -126,12 +258,36 @@
         "val": "asociados",
         "subcategory": "cliente",
         "category": "Nombres Propios"
+      },
+      {
+        "word_index": 13,
+        "val": "correo",
+        "subcategory": "atributo",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
   "6": {
     "text": "genera la factura del pedido de compra 852025",
     "keywords": [
+      {
+        "word_index": 2,
+        "val": "factura",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 4,
+        "val": "pedido",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 6,
+        "val": "compra",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 7,
         "val": "852025",
@@ -143,6 +299,12 @@
   "7": {
     "text": "verifica si la factura fa 409516 de hierros del pacífico ya está pagada",
     "keywords": [
+      {
+        "word_index": 3,
+        "val": "factura",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 4,
         "val": "fa",
@@ -179,10 +341,28 @@
     "text": "cuántas sillas ergonómicas de oficina tenemos en la bodega de guayaquil",
     "keywords": [
       {
+        "word_index": 1,
+        "val": "sillas",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 2,
+        "val": "ergonómicas",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 4,
+        "val": "oficina",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 8,
         "val": "bodega",
         "subcategory": "ubicacion",
-        "category": "Nombres Propios"
+        "category": "Vocabulario de Negocio"
       },
       {
         "word_index": 10,
@@ -196,10 +376,28 @@
     "text": "registra el ingreso de 50 resmas de papel a4 del proveedor papel mundo",
     "keywords": [
       {
+        "word_index": 2,
+        "val": "ingreso",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 4,
         "val": "50",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 5,
+        "val": "resmas",
+        "subcategory": "unidad",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 7,
+        "val": "papel",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
       },
       {
         "word_index": 8,
@@ -225,16 +423,59 @@
     "text": "dame el stock actual de discos duros de un terabyte de la marca duradisco",
     "keywords": [
       {
+        "word_index": 2,
+        "val": "stock",
+        "subcategory": "atributo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 5,
+        "val": "discos",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 6,
+        "val": "duros",
+        "subcategory": "producto",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 8,
         "val": "un",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 9,
+        "val": "terabyte",
+        "subcategory": "unidad",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 13,
+        "val": "duradisco",
+        "oov": true,
+        "subcategory": "producto",
+        "category": "Nombres Propios"
       }
     ]
   },
   "11": {
     "text": "muéstrame el historial de compras del cliente eduardo terroso durante los últimos 6 meses",
     "keywords": [
+      {
+        "word_index": 2,
+        "val": "historial",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 4,
+        "val": "compras",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 7,
         "val": "eduardo",
@@ -248,10 +489,22 @@
         "category": "Nombres Propios"
       },
       {
+        "word_index": 11,
+        "val": "últimos",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 12,
         "val": "6",
         "subcategory": "cantidad",
         "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
+        "word_index": 13,
+        "val": "meses",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
@@ -277,6 +530,12 @@
         "category": "Nombres Propios"
       },
       {
+        "word_index": 11,
+        "val": "ruc",
+        "subcategory": "atributo",
+        "category": "Datos Críticos (Num/Alfa)"
+      },
+      {
         "word_index": 12,
         "val": "0922078366001",
         "subcategory": "codigo",
@@ -287,6 +546,18 @@
   "13": {
     "text": "cuál es el número de teléfono principal de la empresa dulces ideas",
     "keywords": [
+      {
+        "word_index": 3,
+        "val": "número",
+        "subcategory": "atributo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 5,
+        "val": "teléfono",
+        "subcategory": "atributo",
+        "category": "Vocabulario de Negocio"
+      },
       {
         "word_index": 10,
         "val": "dulces",
@@ -305,6 +576,18 @@
     "text": "genera el reporte de ventas del vendedor daniel gómez para el mes de agosto",
     "keywords": [
       {
+        "word_index": 2,
+        "val": "reporte",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 4,
+        "val": "ventas",
+        "subcategory": "documento",
+        "category": "Vocabulario de Negocio"
+      },
+      {
         "word_index": 7,
         "val": "daniel",
         "subcategory": "personal",
@@ -315,11 +598,42 @@
         "val": "gómez",
         "subcategory": "personal",
         "category": "Nombres Propios"
+      },
+      {
+        "word_index": 11,
+        "val": "mes",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 13,
+        "val": "agosto",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
       }
     ]
   },
   "15": {
     "text": "cuál fue nuestro producto más vendido durante el último trimestre",
-    "keywords": []
+    "keywords": [
+      {
+        "word_index": 3,
+        "val": "producto",
+        "subcategory": "atributo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 8,
+        "val": "último",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
+      },
+      {
+        "word_index": 9,
+        "val": "trimestre",
+        "subcategory": "tiempo",
+        "category": "Vocabulario de Negocio"
+      }
+    ]
   }
 }
