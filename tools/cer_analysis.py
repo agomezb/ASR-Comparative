@@ -657,3 +657,64 @@ class CERVisualizer:
         
         plt.tight_layout()
         plt.show()
+
+    @staticmethod
+    def plot_cer_by_snr_and_category_panel(cer_df: pd.DataFrame, title: str = "Evolución del CER por Nivel de Ruido y Categoría") -> None:
+        """
+        Genera un panel con tres subgráficos alineados verticalmente (uno por categoría),
+        mostrando la evolución del CER a través de los niveles de SNR para cada ASR.
+        
+        Args:
+            cer_df: DataFrame original con datos de CER.
+            title: Título general del gráfico.
+        """
+        categories = ['Vocabulario de Negocio', 'Nombres Propios', 'Números/Cod.Alfa']
+        snr_levels = ['clean', '10dB', '5dB', '0dB']
+        providers = sorted(cer_df['provider'].unique())
+        
+        colors = {
+            'google': '#4285F4',
+            'azure': '#0078D4',
+            'amazon': '#FF9900',
+            'whisper': '#34A853'
+        }
+        
+        # Calcular CER promedio por provider, snr y category
+        # Usamos include_groups=False para evitar el warning de Pandas
+        grouped = cer_df.groupby(['provider', 'snr', 'category']).apply(
+            lambda x: x['edit_distance'].sum() / x['ref_length'].sum() if x['ref_length'].sum() > 0 else 0,
+            include_groups=False
+        ).reset_index(name='cer')
+        
+        # Convertir a porcentaje
+        grouped['cer_pct'] = grouped['cer'] * 100
+        
+        if title:
+            print(title)
+            
+        fig, axes = plt.subplots(3, 1, figsize=(10, 15), sharex=False, sharey=True)
+        
+        for i, category in enumerate(categories):
+            ax = axes[i]
+            subset = grouped[grouped['category'] == category]
+            
+            for provider in providers:
+                provider_data = subset[subset['provider'] == provider]
+                # Asegurar orden de SNR
+                provider_data = provider_data.set_index('snr').reindex(snr_levels).reset_index()
+                
+                ax.plot(provider_data['snr'], provider_data['cer_pct'], marker='o', 
+                        label=str(provider).capitalize(), color=colors.get(provider, 'gray'), linewidth=2)
+            
+            ax.set_title(f"Subgráfico {chr(65+i)}: {category}", fontsize=12, fontweight='bold', loc='left')
+            ax.set_ylabel('CER (%)', fontsize=10, fontweight='bold')
+            ax.grid(True, linestyle='--', alpha=0.3)
+            
+            if i == 0: # Leyenda solo en el primero para no saturar
+                ax.legend(title='ASR', loc='upper left', fontsize=9, framealpha=0.9)
+            
+            # Mostrar etiquetas del eje X en todos los subgráficos
+            # ax.set_xlabel('Nivel de Degradación Acústica (SNR)', fontsize=10, fontweight='bold')
+
+        plt.tight_layout()
+        plt.show()
