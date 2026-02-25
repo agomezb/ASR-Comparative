@@ -30,7 +30,7 @@ class CERAnalyzer:
         
         Returns:
             tuple: (friedman_result, wilcoxon_results_df)
-                   friedman_result: (statistic, p_value)
+                   friedman_result: (statistic, p_value, kendall_w, n_blocks)
                    wilcoxon_results_df: DataFrame con resultados post-hoc o None.
         """
         df_target = self.cer_df.copy()
@@ -61,16 +61,21 @@ class CERAnalyzer:
         
         if pivot_cer.empty:
             print(f"No hay datos suficientes para análisis estadístico en categoría: {category}")
-            return (None, None), None
+            return (None, None, None, None), None
             
         # Test de Friedman
         stat, p_value = stats.friedmanchisquare(*[pivot_cer[col] for col in pivot_cer.columns])
-        friedman_result = (stat, p_value)
+        # W de Kendall: concordancia entre rankings (0-1). W = χ² / (n * (k - 1))
+        n_blocks = pivot_cer.shape[0]  # N = número total de muestras (bloques) con datos completos para todos los ASR
+        k_groups = pivot_cer.shape[1]
+        kendall_w = stat / (n_blocks * (k_groups - 1)) if (n_blocks > 0 and k_groups > 1) else None
+        friedman_result = (stat, p_value, kendall_w, n_blocks)
         
         wilcoxon_df = None
         if p_value < 0.05:
             comparisons = []
             p_values = []
+            w_statistics = []
             effect_sizes = []
             pairs = list(itertools.combinations(pivot_cer.columns, 2))
             n_comparisons = len(pairs)
@@ -85,6 +90,7 @@ class CERAnalyzer:
                     
                 comparisons.append(f"{p1} vs {p2}")
                 p_values.append(p_w)
+                w_statistics.append(stat_w)
                 
                 # Tamaño del efecto (r = Z / sqrt(N))
                 n = len(pivot_cer)
@@ -115,6 +121,7 @@ class CERAnalyzer:
 
             wilcoxon_df = pd.DataFrame({
                 'Comparación': comparisons,
+                'Estadístico W': w_statistics,
                 'p-value original': p_values,
                 'p-value adj (Holm-Bonferroni)': p_adjusted,
                 'Significativo': reject,
@@ -259,7 +266,7 @@ class CERAnalyzer:
         Calcula CER promedio global y sus intervalos de confianza por proveedor (agrupando todas las categorías).
         
         Returns:
-            DataFrame con columnas: provider, cer, ci_lower, ci_upper, cer_pct, ci_lower_pct, ci_upper_pct, count.
+            DataFrame con columnas: provider, cer, ci_lower, ci_upper, cer_pct, ci_lower_pct, ci_upper_pct, count, errors, characters.
         """
         results = []
         
@@ -287,7 +294,9 @@ class CERAnalyzer:
                 'cer_pct': cer * 100,
                 'ci_lower_pct': lower * 100,
                 'ci_upper_pct': upper * 100,
-                'count': len(group)
+                'count': len(group),
+                'errors': int(total_dist),
+                'characters': int(total_len)
             })
             
         return pd.DataFrame(results)
@@ -416,7 +425,8 @@ class CERVisualizer:
 
         ax.set_ylabel('CER Promedio (%)', fontsize=12, fontweight='bold')
         ax.set_xlabel('Categoría de Entidad', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
+        if title:
+            print(title)
         ax.set_xticks(x)
         ax.set_xticklabels(categories, rotation=45, ha='right', fontsize=11)
         ax.legend(title='ASR', fontsize=11)
@@ -473,7 +483,8 @@ class CERVisualizer:
         
         ax.set_ylabel('CER Promedio (%)', fontsize=12, fontweight='bold')
         ax.set_xlabel('ASR', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
+        if title:
+            print(title)
         ax.set_xticks(x)
         ax.set_xticklabels([str(p).capitalize() for p in providers], fontsize=11)
         ax.grid(axis='y', linestyle='--', alpha=0.3)
@@ -489,20 +500,28 @@ class CERVisualizer:
     @staticmethod
     def display_global_cer_table(summary_df: pd.DataFrame):
         """
-        Muestra la tabla de CER global formateada (estilo WER: ASR, CER Global, IC 95% Inf, IC 95% Sup).
+        Muestra la tabla de CER global formateada: ASR, CER Global, Errores, Caracteres, IC 95% Inf, IC 95% Sup.
         """
         display_df = summary_df.rename(columns={
             'provider': 'ASR',
             'cer_pct': 'CER Global',
             'ci_lower_pct': 'IC 95% Inf',
-            'ci_upper_pct': 'IC 95% Sup'
+            'ci_upper_pct': 'IC 95% Sup',
+            'errors': 'Errores',
+            'characters': 'Caracteres'
         })
-        print("Tabla Comparativa: Rendimiento Global con Intervalos de Confianza")
-        return display_df[['ASR', 'CER Global', 'IC 95% Inf', 'IC 95% Sup']].style.format({
+        cols = ['ASR', 'CER Global', 'Errores', 'Caracteres', 'IC 95% Inf', 'IC 95% Sup']
+        out_df = display_df[[c for c in cols if c in display_df.columns]]
+        fmt = {
             'CER Global': '{:.2f}%',
             'IC 95% Inf': '{:.2f}%',
-            'IC 95% Sup': '{:.2f}%'
-        }).hide(axis='index')
+            'IC 95% Sup': '{:.2f}%',
+            'Errores': '{:.0f}',
+            'Caracteres': '{:.0f}'
+        }
+        fmt = {k: v for k, v in fmt.items() if k in out_df.columns}
+        print("Tabla Comparativa: Rendimiento Global con Intervalos de Confianza")
+        return out_df.style.format(fmt).hide(axis='index')
 
     @staticmethod
     def display_global_statistical_results(friedman_result, wilcoxon_df, title: str = "Análisis Estadístico de Significancia (CER Global)") -> None:
@@ -510,22 +529,33 @@ class CERVisualizer:
         Muestra los resultados de Friedman y post-hoc (Wilcoxon + Holm-Bonferroni) para CER global.
         Formato similar a 2_wer.ipynb.
         """
-        stat, p_value = friedman_result
+        stat, p_value = friedman_result[0], friedman_result[1]
+        kendall_w = friedman_result[2] if len(friedman_result) > 2 else None
+        n_blocks = friedman_result[3] if len(friedman_result) > 3 else None
         if stat is None:
             print(f"\n{title}")
             print("No se pudieron realizar las pruebas estadísticas (datos insuficientes o estructura incorrecta).")
             return
 
         print(f"\n{title}")
-        print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}")
+        if n_blocks is not None:
+            print(f"N (muestras/bloques) = {n_blocks}")
+        print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}", end="")
+        if kendall_w is not None:
+            print(f", W de Kendall={kendall_w:.4f}")
+        else:
+            print()
 
         if p_value < 0.05 and wilcoxon_df is not None:
             print(">> Diferencias significativas encontradas. Realizando post-hoc (Wilcoxon + Holm-Bonferroni)...")
-            display(wilcoxon_df.style.format({
+            fmt = {
+                'Estadístico W': '{:.0f}',
                 'p-value original': '{:.4e}',
                 'p-value adj (Holm-Bonferroni)': '{:.4e}',
                 'Tamaño del Efecto (r)': '{:.4f}'
-            }).hide(axis='index').set_properties(**{
+            }
+            fmt = {k: v for k, v in fmt.items() if k in wilcoxon_df.columns}
+            display(wilcoxon_df.style.format(fmt).hide(axis='index').set_properties(**{
                 'text-align': 'center',
                 'padding': '8px'
             }).set_table_styles([
@@ -573,11 +603,15 @@ class CERVisualizer:
         display(HTML(f"<h3>{title}</h3>"))
         
         for category, (friedman, wilcoxon) in results.items():
-            stat, p_val = friedman
+            stat, p_val = friedman[0], friedman[1]
+            kendall_w = friedman[2] if len(friedman) > 2 else None
+            n_blocks = friedman[3] if len(friedman) > 3 else None
             if stat is None: continue
             
             display(HTML(f"<h4>Categoría: {category}</h4>"))
-            display(HTML(f"<p><b>Test de Friedman:</b> Chi2={stat:.4f}, p-value={p_val:.4e}</p>"))
+            n_str = f" N (muestras) = {n_blocks}." if n_blocks is not None else ""
+            kendall_str = f", W de Kendall={kendall_w:.4f}" if kendall_w is not None else ""
+            display(HTML(f"<p><b>Test de Friedman:</b>{n_str} Chi2={stat:.4f}, p-value={p_val:.4e}{kendall_str}</p>"))
             
             if wilcoxon is not None:
                 display(HTML(wilcoxon.to_html(index=False)))
@@ -617,7 +651,8 @@ class CERVisualizer:
             
         ax.set_ylabel('CER (Character Error Rate)', fontsize=12, fontweight='bold')
         ax.set_xlabel('ASR', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
+        if title:
+            print(title)
         ax.grid(axis='y', linestyle='--', alpha=0.3)
         
         plt.tight_layout()

@@ -148,7 +148,7 @@ class WERAnalyzer:
         
         Returns:
             tuple: (friedman_result, wilcoxon_results_df)
-                   friedman_result: (statistic, p_value)
+                   friedman_result: (statistic, p_value, kendall_w, n_blocks)
                    wilcoxon_results_df: DataFrame con resultados post-hoc o None si Friedman no es significativo.
         """
         target_df = df if df is not None else self.df_wer
@@ -167,16 +167,21 @@ class WERAnalyzer:
         
         if pivot_wer.empty:
             print("Advertencia: No hay datos suficientes para el análisis estadístico después de pivotar.")
-            return (None, None), None
+            return (None, None, None, None), None
 
         # Test de Friedman
         stat, p_value = stats.friedmanchisquare(*[pivot_wer[col] for col in pivot_wer.columns])
-        friedman_result = (stat, p_value)
+        # W de Kendall: concordancia entre rankings (0-1). W = χ² / (n * (k - 1))
+        n_blocks = pivot_wer.shape[0]  # N = número total de muestras (bloques) con datos completos para todos los ASR
+        k_groups = pivot_wer.shape[1]
+        kendall_w = stat / (n_blocks * (k_groups - 1)) if (n_blocks > 0 and k_groups > 1) else None
+        friedman_result = (stat, p_value, kendall_w, n_blocks)
         
         wilcoxon_df = None
         if p_value < 0.05:
             comparisons = []
             p_values = []
+            w_statistics = []
             effect_sizes = []
             pairs = list(itertools.combinations(pivot_wer.columns, 2))
             n_comparisons = len(pairs)
@@ -191,6 +196,7 @@ class WERAnalyzer:
                 
                 comparisons.append(f"{p1} vs {p2}")
                 p_values.append(p_w)
+                w_statistics.append(stat_w)
                 
                 # Effect size (r = Z / sqrt(N))
                 n = len(pivot_wer)
@@ -232,6 +238,7 @@ class WERAnalyzer:
             
             wilcoxon_df = pd.DataFrame({
                 'Comparación': comparisons,
+                'Estadístico W': w_statistics,
                 'p-value original': p_values,
                 'p-value adj (Holm-Bonferroni)': p_adjusted,
                 'Significativo': reject,
@@ -386,22 +393,33 @@ class WERVisualizer:
         """
         Muestra los resultados de las pruebas estadísticas.
         """
-        stat, p_value = friedman_result
+        stat, p_value = friedman_result[0], friedman_result[1]
+        kendall_w = friedman_result[2] if len(friedman_result) > 2 else None
+        n_blocks = friedman_result[3] if len(friedman_result) > 3 else None
         if stat is None:
             print(f"\n {title} ")
             print("No se pudieron realizar las pruebas estadísticas (datos insuficientes o estructura incorrecta).")
             return
 
         print(f"\n {title} ")
-        print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}")
+        if n_blocks is not None:
+            print(f"N (muestras/bloques) = {n_blocks}")
+        print(f"Test de Friedman: Estadístico={stat:.4f}, p-value={p_value:.4e}", end="")
+        if kendall_w is not None:
+            print(f", W de Kendall={kendall_w:.4f}")
+        else:
+            print()
         
         if p_value < 0.05 and wilcoxon_df is not None:
             print(">> Diferencias significativas encontradas. Realizando post-hoc (Wilcoxon + Holm-Bonferroni)...")
-            display(wilcoxon_df.style.format({
+            fmt = {
+                'Estadístico W': '{:.0f}',
                 'p-value original': '{:.4e}',
                 'p-value adj (Holm-Bonferroni)': '{:.4e}',
                 'Tamaño del Efecto (r)': '{:.4f}'
-            }).hide(axis='index').set_properties(**{
+            }
+            fmt = {k: v for k, v in fmt.items() if k in wilcoxon_df.columns}
+            display(wilcoxon_df.style.format(fmt).hide(axis='index').set_properties(**{
                 'text-align': 'center',
                 'padding': '8px'
             }).set_table_styles([
