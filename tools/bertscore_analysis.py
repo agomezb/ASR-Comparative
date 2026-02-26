@@ -190,6 +190,7 @@ class BERTScoreVisualizer:
             print("No hay datos para graficar.")
             return
 
+        print(title)
         providers = stats_df['provider'].unique()
         
         colors = {
@@ -216,7 +217,6 @@ class BERTScoreVisualizer:
         
         ax.set_ylabel('BERTScore F1', fontsize=12, fontweight='bold')
         ax.set_xlabel('ASR', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
         ax.set_xticks(x)
         ax.set_xticklabels([str(p).capitalize() for p in providers], fontsize=11)
         ax.grid(axis='y', linestyle='--', alpha=0.3)
@@ -251,6 +251,7 @@ class BERTScoreVisualizer:
             print("No hay datos para graficar.")
             return
 
+        print(title)
         providers = sorted(df['provider'].unique())
         data_by_provider = [df[df['provider'] == p]['bertscore_f1'].values for p in providers]
         
@@ -271,7 +272,6 @@ class BERTScoreVisualizer:
             
         ax.set_ylabel('BERTScore F1', fontsize=12, fontweight='bold')
         ax.set_xlabel('ASR', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
         ax.grid(axis='y', linestyle='--', alpha=0.3)
         
         plt.tight_layout()
@@ -286,6 +286,7 @@ class BERTScoreVisualizer:
             print("No hay datos para graficar.")
             return
 
+        print(title)
         # Ordenar niveles de SNR
         snr_order = ['clean', '10dB', '5dB', '0dB']
         # Filtrar solo los que existen en los datos
@@ -336,7 +337,6 @@ class BERTScoreVisualizer:
             
         ax.set_ylabel('BERTScore F1', fontsize=12, fontweight='bold')
         ax.set_xlabel('Nivel de Ruido (SNR)', fontsize=12, fontweight='bold')
-        ax.set_title(title, fontsize=14, fontweight='bold')
         ax.set_xticks(x)
         ax.set_xticklabels(snr_levels, fontsize=11)
         ax.legend(title='ASR', fontsize=11, loc='lower left')
