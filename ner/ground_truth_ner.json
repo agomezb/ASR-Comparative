@@ -1,0 +1,62 @@
+[
+    {
+        "id": "1",
+        "text": "Genera una cotización para el cliente Compufacil con 5 monitores led y 3 soportes de pared"
+    },
+    {
+        "id": "2",
+        "text": "Prepara un presupuesto urgente con 10 teclados inalámbricos y 10 ratones ópticos para enviar a Tecnosys"
+    },
+    {
+        "id": "3",
+        "text": "Crea una oferta comercial para Carla Santana con 1 escritorio ejecutivo modelo XG Premium"
+    },
+    {
+        "id": "4",
+        "text": "Genera una proforma para AndinaCorp incluye 2 laptops core i7 y 3 impresoras multifunción"
+    },
+    {
+        "id": "5",
+        "text": "Busca la última factura del cliente Velasco y Asociados y reenvíala a su correo"
+    },
+    {
+        "id": "6",
+        "text": "Genera la factura del pedido de compra 852025"
+    },
+    {
+        "id": "7",
+        "text": "Verifica si la factura FA 409516 de Hierros del Pacífico ya está pagada"
+    },
+    {
+        "id": "8",
+        "text": "¿Cuántas sillas ergonómicas de oficina tenemos en la bodega de Guayaquil?"
+    },
+    {
+        "id": "9",
+        "text": "Registra el ingreso de 50 resmas de papel A4 del proveedor Papel Mundo"
+    },
+    {
+        "id": "10",
+        "text": "Dame el stock actual de discos duros de 1 terabyte de la marca Duradisco"
+    },
+    {
+        "id": "11",
+        "text": "Muéstrame el historial de compras del cliente Eduardo Terroso durante los últimos 6 meses"
+    },
+    {
+        "id": "12",
+        "text": "Crea un nuevo cliente con el nombre Julián Antonio Pérez y RUC 0922078366001"
+    },
+    {
+        "id": "13",
+        "text": "¿Cuál es el número de teléfono principal de la empresa Dulces Ideas?"
+    },
+    {
+        "id": "14",
+        "text": "Genera el reporte de ventas del vendedor Daniel Gómez para el mes de agosto"
+    },
+    {
+        "id": "15",
+        "text": "¿Cuál fue nuestro producto más vendido durante el último trimestre?"
+    }
+]

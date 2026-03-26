@@ -8,7 +8,7 @@ class NLUEvaluator:
     A class to evaluate ASR transcriptions based on business logic rules for intents and slots.
     """
 
-    def __init__(self, rules_path: str = "tools/nlu_rules.json"):
+    def __init__(self, rules_path: str = "tools/nlu_rules_numeric.json"):
         """
         Initializes the evaluator by loading rules from a JSON file.
 
